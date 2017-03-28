@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test runner" parallel="classes" thread-count="2">
-    <test name="Package with subpackages">
+<suite name="Cucumber_TestNG Runner" parallel="classes" thread-count="2">
+    <test name="Box Office Tests">
         <packages>
             <package name="com.test.runners.*"/>
         </packages>
