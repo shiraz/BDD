@@ -1,5 +1,7 @@
 package com.test.glue;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.test.framework.ParentScenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -11,28 +13,34 @@ import static org.hamcrest.core.Is.is;
 
 public class StepDefinitions extends ParentScenario {
 
-    @Before
-    public void beforeScenario() {
-        startBrowser();
-    }
-
-    @Given("^I am on the Selenium homepage$")
-    public void I_am_on_the_Selenium_homepage() {
-        navigateTo();
-    }
-
-    @When("^I click \"([^\"]*)\" tab$")
-    public void I_click_tab_on(String tab) {
-        mainPage.clickTab(tab);
-    }
-
-    @Then("^I should see \"([^\"]*)\" download link on Download page$")
-    public void I_should_see_download_link_on_download_page(String linkText) {
-        assertThat(downloadPage.hasDownloadLinkFor(linkText), is(true));
-    }
+    private JsonArray boxOfficeData;
 
     @After
     public void afterScenario() {
         closeBrowser();
     }
+
+    @Before
+    public void beforeScenario() {
+        startBrowser();
+    }
+
+    @Given("^I am on the 2017 Yearly Box Office page$")
+    public void goToBoxOfficePage() {
+        navigateToBoxOfficePage(2017);
+    }
+
+
+    @When("^I have a structure to store the box office data$")
+    public void storeBoxOfficeDataFromWebTable() {
+        boxOfficeData = ybo.convertWebTableDataToJson();
+    }
+
+    /*
+    @Then("^I should see \"([^\"]*)\" download link on Download page$")
+    public void I_should_see_download_link_on_download_page(String linkText) {
+        assertThat(downloadPage.hasDownloadLinkFor(linkText), is(true));
+    }
+    */
+
 }

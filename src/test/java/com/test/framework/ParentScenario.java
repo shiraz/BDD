@@ -1,7 +1,8 @@
 package com.test.framework;
 
-import com.test.page.objects.DownloadPage;
-import com.test.page.objects.MainPage;
+import com.test.framework.page_objects.YearlyBoxOfficePage;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -10,21 +11,20 @@ import java.util.concurrent.TimeUnit;
 
 public class ParentScenario {
 
-    private WebDriver driver;
-    protected DownloadPage downloadPage;
-    protected MainPage mainPage;
+    public WebDriver driver;
+    public YearlyBoxOfficePage ybo;
 
-    protected void startBrowser() {
-        setChromeDriver();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        downloadPage = new DownloadPage(driver);
-        mainPage = new MainPage(driver);
+    protected void closeBrowser() {
+        driver.quit();
+    }
+
+    protected void navigateToBoxOfficePage(int year) {
+        driver.get("http://www.boxofficemojo.com/yearly/chart/?view2=worldwide&yr=" + year);
     }
 
     protected void setChromeDriver() {
         // Initialize a string to store the driver path.
-        String driverPath = null;
+        String driverPath;
         // Get the current path.
         String currentPath = System.getProperty("user.dir");
         driverPath = currentPath + File.separator + "drivers" + File.separator;
@@ -46,12 +46,11 @@ public class ParentScenario {
         System.setProperty("webdriver.chrome.driver", driverPath);
     }
 
-    protected void navigateTo() {
-        driver.get("http://www.seleniumhq.org/download/");
-    }
-
-    protected void closeBrowser() {
-        driver.quit();
+    protected void startBrowser() {
+        setChromeDriver();
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        ybo = new YearlyBoxOfficePage(driver);
     }
 
 }

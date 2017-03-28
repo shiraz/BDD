@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class DSL {
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     public DSL(WebDriver driver) {
         this.driver = driver;
