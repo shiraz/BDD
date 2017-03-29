@@ -18,5 +18,6 @@ The test shows the behavior of TestNG and Cucumber during pass and fail states. 
 1. Install Java 1.8 or higher.
 2. Install Maven.
 3. Clone this repository.
-4. Open up Terminal/Command Prompt, navigate to this project, and then execute the command, "mvn clean test".
-5. The reports can be found at target/cucumber-html-report/index.html.
+4. For Mac and Linux users, open up Terminal/Command Prompt, navigate to this project, and then execute the command, "sudo chmod a+x chromedriver" (for Mac) or "sudo chmod a+x chromedriver_linux" (for Linux).
+5. Open up Terminal/Command Prompt, navigate to this project, and then execute the command, "mvn clean test".
+6. The reports can be found at target/cucumber-html-report/index.html.
