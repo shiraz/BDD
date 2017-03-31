@@ -1,16 +1,13 @@
 Feature: Movies Box Office
   In order to see how the movie business is faring, I need to get a yearly report of box office earnings.
 
-  Background:
-    Given I am on the 2017 Yearly Box Office page
-    When I have a structure to store the 2017 box office data
-    Given I am on the 2016 Yearly Box Office page
-    When I have a structure to store the 2016 box office data
+  Scenario Outline: <year> Universal Movies <earning_name> Earnings
+    Given I am on the <year> Yearly Box Office page
+    And I have a structure to store the <year> box office data
+    Then I should store all <year> box office data pertaining to the Universal brand
+    And I should verify that all the <year> Universal movies have <earning_name> earnings of over $<earnings> million each
 
-  Scenario: 2017 Universal Movies Domestic Earnings
-    Then I should store all 2017 box office data pertaining to the Universal brand
-    Then I should verify that all the 2017 Universal movies have domestic earnings of over $45.0 million each
-
-  Scenario: 2016 Universal Movies Worldwide Earnings
-    Then I should store all 2016 box office data pertaining to the Universal brand
-    Then I should verify that all the 2016 Universal movies have worldwide earnings of over $100.0 million each
+    Examples:
+      | year | earning_name | earnings |
+      | 2016 | domestic     | 45.0     |
+      | 2017 | worldwide    | 100.0    |
