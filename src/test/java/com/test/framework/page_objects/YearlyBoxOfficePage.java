@@ -28,7 +28,7 @@ public class YearlyBoxOfficePage extends ParentPage {
     private static final String DOMESTIC_PERCENTAGE = "Domestic_%";
     private static final String OVERSEAS_PERCENTAGE = "Overseas_%";
     private static final String STUDIO = "Studio";
-    private static final String TITLE = "Title";
+    public static final String TITLE = "Title";
     private static final String UNIVERSAL = "Uni.";
     public static final String WORLDWIDE = "Worldwide";
 
